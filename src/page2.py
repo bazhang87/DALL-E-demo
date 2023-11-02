@@ -1,5 +1,13 @@
 import streamlit as st
 import openai
+import requests
+import json
+
+url = "https://stablediffusionapi.com/api/v3/text2img"
+
+headers = {
+  'Content-Type': 'application/json'
+}
 
 def page2():
     st.title("OpenAI DALL·E Image Generation")
@@ -15,11 +23,26 @@ def page2():
 
     if submit_button:
         if prompt:
-            response = openai.Image.create(
-                    prompt = prompt,
-                    n = num_images,
-                    size=size,
-                )
+            response = 
+json.dumps({
+  "key": "",
+  "prompt": prompt,
+  "negative_prompt": None,
+  "width": "512",
+  "height": "512",
+  "samples": "1",
+  "num_inference_steps": "20",
+  "seed": None,
+  "guidance_scale": 7.5,
+  "safety_checker": "yes",
+  "multi_lingual": "no",
+  "panorama": "no",
+  "self_attention": "no",
+  "upscale": "no",
+  "embeddings_model": null,
+  "webhook": None,
+  "track_id": None
+})
             
             for idx in range(num_images):
                 image_url = response["data"][idx]["url"]
